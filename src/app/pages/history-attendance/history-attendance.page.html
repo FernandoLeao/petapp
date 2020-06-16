@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Historico de Atendimentos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card *ngFor= "let att of attendances">
+    <ion-card-header>
+      <ion-card-title>Nome do Animal : {{att.animalName}} </ion-card-title>
+      <ion-card-subtitle>Atendido Por : {{att.veterinaryName}} </ion-card-subtitle>
+      <ion-card-subtitle>Data Atendimento : {{att.attendanceDate}}</ion-card-subtitle>
+     
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{att.diagnostic}}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

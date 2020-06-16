@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro de Atendimento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size-lg="12">
+          <div>
+            <p>Digite abaixo o nome do cliente</p>
+            <ion-searchbar lines="none" placeholder="Busque o nome do cliente..." [debounce]="500"  #searchbar
+            [(ngModel)]="searchInput" (ionChange)="onChange()" [debounce]="1000"></ion-searchbar>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-item *ngIf="spinner">
+          <ion-spinner name="bubbles"></ion-spinner>
+        </ion-item>
+        <ion-col size="12">
+          <ion-list search-result>
+            <ion-item lines="none" *ngFor="let customer of customers">
+              <div>
+                <h4>{{customer.name}}</h4>
+                <p>{{customer.cpf}}</p>
+              </div>
+              <ion-button class="btn-add-restaurant" mode="ios" expand="block" color="success" (click)="goto(customer)">
+                Criar Novo Atendimento
+              </ion-button>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

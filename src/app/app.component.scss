@@ -1,0 +1,12 @@
+:host {
+    ion-content {
+        --background: var(--ion-color-primary-contrast);
+        //--background: linear-gradient(135deg, var(--ion-color-dark), var(--ion-color-primary));
+    }
+
+    ion-list {
+        &.list-md {
+            padding: 0;
+        }
+    }
+}

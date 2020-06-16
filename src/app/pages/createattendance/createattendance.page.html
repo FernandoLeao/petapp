@@ -1,0 +1,140 @@
+<ion-header>
+
+  <ion-grid fixed="true">
+    <ion-row>
+      <ion-col>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-back-button color="secondary" defaultHref="/home-results"></ion-back-button>
+          </ion-buttons>
+          <ion-title color="secondary">Criação de Um Atendimento</ion-title>
+        </ion-toolbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-header>
+
+<ion-content id="main-content" class="login auth-page" padding>
+
+  <div class="auth-content">
+
+    <ion-grid class="bg-white" fixed="true">
+      <ion-row>
+        <ion-col size="12" size-lg="8" push-lg="2">
+
+          <!-- Logo -->
+          <div padding-horizontal text-center>           
+            <p>
+              <ion-text color="secondary">
+                <ion-text color="dark">Digite os dados nos campos abaixo:</ion-text>
+              </ion-text>
+            </p>
+          </div>
+
+          <!-- Register form -->
+          <form [formGroup]="attendanceForm" class="list-form">
+            <ion-grid>
+
+              <ion-row>
+
+                <ion-col size="12" size-md="12">
+                  <ion-item no-padding class="animated fadeInUp">
+                    <ion-label position="floating">
+                      Cliente : {{customerName}}
+                    </ion-label>               
+                  </ion-item>
+                </ion-col>              
+              </ion-row>
+
+              <ion-row>
+
+                <ion-col size="12" size-md="12">
+                  <ion-item no-padding class="animated fadeInUp">
+                    <ion-label position="floating">
+                      Veterinário
+                    </ion-label>
+                    <ion-select [(ngModel)] = "veterinaryId" [ngModelOptions]="{standalone: true}">
+                      <ion-select-option value="0">Selecione um Veterinário</ion-select-option>
+                      <ion-select-option value="{{vet.id}}"  *ngFor="let vet of veterinaries">{{vet.name}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>                  
+                </ion-col>              
+              </ion-row>
+
+              <ion-row>
+
+                <ion-col size="12" size-md="12">
+                  <ion-item no-padding class="animated fadeInUp">
+                    <ion-label position="floating">
+                      Animal
+                    </ion-label>
+                    <ion-select [(ngModel)] = "animalId" [ngModelOptions]="{standalone: true}">
+                      <ion-select-option value="0">Selecione um Animal</ion-select-option>
+                      <ion-select-option [value]="animal.id"  *ngFor="let animal of animals">{{animal.name}}</ion-select-option>
+                    </ion-select>                   
+                  </ion-item>                  
+                </ion-col>              
+              </ion-row>              
+
+              <ion-row>                
+                <ion-col size="12" size-md="12">
+                  <ion-item no-padding class="animated fadeInUp">
+                    <ion-label position="floating">
+                      Data Atendimento
+                    </ion-label>
+                    <ion-input color="dark" type="text" formControlName="attendanceDate"  placeholder = "dd/mm/yyyy"  [brmasker]="{form: attendanceForm.get('attendanceDate'), mask:'99/99/999'}"></ion-input>
+                  </ion-item>
+                  <p ion-text class="text08"  *ngFor="let validation of validationMessages.attendanceDate">
+                    <ion-text color="danger" *ngIf="showErrorMessage('attendanceDate',validation)">
+                      {{validation.message}}
+                    </ion-text>
+                  </p>
+                </ion-col>
+              </ion-row>
+
+
+              <ion-row>                
+                <ion-col size="12" size-md="12">
+                  <ion-item no-padding class="animated fadeInUp">
+                    <ion-label position="floating">
+                      Diagnostico
+                    </ion-label>
+                    <ion-textarea color="dark" type="text" formControlName="diagnostic" cols="100" rows="5"></ion-textarea>
+                  </ion-item>
+                  <p ion-text class="text08"  *ngFor="let validation of validationMessages.diagnostic">
+                    <ion-text color="danger" *ngIf="showErrorMessage('diagnostic',validation)">
+                      {{validation.message}}
+                    </ion-text>
+                  </p>
+                </ion-col>
+              </ion-row>
+
+              
+
+              <ion-row>
+                <ion-col size="12" size-md="12">
+                  <div margin-top>
+                    <ion-button icon-left size="medium" expand="full" shape="round" color="primary" (click)="newAttendance()"
+                       tappable>
+                      <ion-icon name="add"></ion-icon>
+                      Criar um Novo Atendimento
+                    </ion-button>
+                  </div>
+                </ion-col>
+              </ion-row>
+
+            </ion-grid>
+
+          </form>
+
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+  </div>
+
+
+
+</ion-content>
